@@ -27,7 +27,7 @@ function calcular(){
                             ' / Ventas mas bajas: ' + ventaMenor; 
         let elementoSalida = document.getElementById('parrafoSalida');
 
-    elementoSalida.textContent = mensajeSalida
+        elementoSalida.textContent = mensajeSalida
     })
    
 }
