@@ -42,9 +42,6 @@ function crearTiendas(contenedorID, min, cantidadTiendas){
     }
 }
 
-window.onload = crearTiendas('itensTienda', 0, 8);
-
-
 function extraerNumeroDesdeElemento(elemento){
     let miTexto = elemento.value;
     let miNumero = Number(miTexto);
@@ -65,19 +62,27 @@ function calcular(){
             posicionVentas = posicionVentas + 1;
         }
          
-         
-        let totalVentas = sumarTotal(ventas)
-        let ventaMayor = calcularMayor(ventas)
-        let ventaMenor = calcularMenor(ventas)
+        for (let i = 0; i < elementoVentas.children.length; i++) {
+            let valorVentas = extraerNumeroDesdeElemento(elementoVentas.children[i].children[1]);
+            let totalVentas = sumarTotal(ventas);
+            let ventaMayor = calcularMayor(ventas);
+            let ventaMenor = calcularMenor(ventas);
 
-        let mensajeSalida = 'Total Ventas: ' + totalVentas + 
+            if(valorVentas === ventaMayor){
+                elementoVentas.children[i].children[1].style.background = 'green';
+            } else if(valorVentas === ventaMenor){
+                elementoVentas.children[i].children[1].style.background = 'red';
+            }
+
+            let mensajeSalida = 'Total Ventas: ' + totalVentas + 
                             ' / Ventas mas altas: ' + ventaMayor + 
                             ' / Ventas mas bajas: ' + ventaMenor; 
-        let elementoSalida = document.getElementById('parrafoSalida');
+            let elementoSalida = document.getElementById('parrafoSalida');
 
-        elementoSalida.textContent = mensajeSalida
+            elementoSalida.textContent = mensajeSalida
+          
+        }    
     })
-   
 }
 
 function sumarTotal(array){
@@ -113,3 +118,4 @@ function calcularMenor(array){
 
 
 calcular()
+window.onload = crearTiendas('itensTienda', 0, 8);
